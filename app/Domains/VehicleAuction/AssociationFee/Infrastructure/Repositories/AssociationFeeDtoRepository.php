@@ -8,14 +8,14 @@ use App\Domains\Common\Domain\ValueObjects\Money;
 use App\Domains\VehicleAuction\AssociationFee\Domain\Repositories\AssociationFeeDtoRepositoryInterface;
 use App\Domains\VehicleAuction\AssociationFee\Infrastructure\Models\AssociationFeeModel;
 use Illuminate\Database\Eloquent\Builder;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 final readonly class AssociationFeeDtoRepository implements AssociationFeeDtoRepositoryInterface
 {
     public function firstAssociationFeeAmountByPrice(Money $amount): Money
     {
-        $callback = static fn () => throw new NotFoundHttpException(
-            message: 'The price of the vehicle is not within any range of the association fee',
+        $callback = static fn () => throw new ConflictHttpException(
+            message: 'The price of the vehicle is not within any range of the association fee.',
         );
 
         /** @var AssociationFeeModel $associationFeeModel */

@@ -9,6 +9,20 @@ use Spatie\LaravelData\Attributes\Validation\GreaterThan;
 use Spatie\LaravelData\Attributes\Validation\Uuid;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use OpenApi\Attributes as OA;
+
+#[OA\Schema(
+    schema: 'CreateAuctionSaleRequest',
+    required: ['price'],
+    properties: [
+        new OA\Property(
+            property: 'price',
+            description: 'Vehicle Price',
+            type: 'float',
+        ),
+    ],
+    type: 'object'
+)]
 
 #[
     MapInputName(SnakeCaseMapper::class),
